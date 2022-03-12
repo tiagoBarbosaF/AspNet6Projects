@@ -1,0 +1,28 @@
+### GET All
+GET https://localhost:7067/
+
+### GET by Id
+GET https://localhost:7067/1
+
+### POST
+POST https://localhost:7067/
+Content-Type: application/json
+
+{
+  "id": 2,
+  "title": "Ir ao mercado",
+  "done": false,
+  "createdAt": "2022-03-02T10:30:00"
+}
+
+### PUT
+PUT https://localhost:7067/1
+Content-Type: application/json
+
+{
+  "title": "Ir ao mercado",
+  "done": false
+}
+
+### DELETE by Id
+DELETE https://localhost:7067/1
