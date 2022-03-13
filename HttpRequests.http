@@ -1,0 +1,35 @@
+# Blog Requests
+
+### GET status API
+GET https://localhost:7209
+
+### GET categories
+GET https://localhost:7209/v1/categories
+
+### POST categories
+POST https://localhost:7209/v1/categories
+Content-Type: application/json
+
+{
+  "name": "Frontend",
+  "slug": "frontend",
+  "posts": []
+}
+###
+
+#------------------------------------
+### GET
+GET https://localhost:7199/
+
+### GET
+GET https://localhost:7199/Tiago Barbosa
+
+### POST
+POST https://localhost:7199/
+Content-Type: application/json
+
+{
+  "id": 1,
+  "username": "tiagobarbosa"
+}
+
