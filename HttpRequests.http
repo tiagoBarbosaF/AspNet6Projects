@@ -11,11 +11,23 @@ POST https://localhost:7209/v1/categories
 Content-Type: application/json
 
 {
+  "name": "",
+  "slug": ""
+}
+
+### PUT categories
+PUT https://localhost:7209/v1/categories/2
+Content-Type: application/json
+
+{
+  "id": 2,
   "name": "Frontend",
   "slug": "frontend",
   "posts": []
 }
-###
+
+### DELETE categories
+DELETE https://localhost:7209/v1/categories/3
 
 #------------------------------------
 ### GET

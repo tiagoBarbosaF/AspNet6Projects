@@ -1,11 +1,11 @@
 ### GET All
-GET https://localhost:7067/
+GET https://localhost:7209/
 
 ### GET by Id
-GET https://localhost:7067/1
+GET https://localhost:7209/1
 
 ### POST
-POST https://localhost:7067/
+POST https://localhost:7209/
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ### PUT
-PUT https://localhost:7067/1
+PUT https://localhost:7209/1
 Content-Type: application/json
 
 {
@@ -25,4 +25,4 @@ Content-Type: application/json
 }
 
 ### DELETE by Id
-DELETE https://localhost:7067/1
+DELETE https://localhost:7209/1
