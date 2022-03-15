@@ -63,7 +63,7 @@ namespace Blog.Migrations
 
                     b.Property<string>("Body")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(MAX)")
                         .HasColumnName("Body");
 
                     b.Property<int>("CategoryId")
@@ -72,13 +72,13 @@ namespace Blog.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("SMALLDATETIME")
-                        .HasDefaultValue(new DateTime(2022, 3, 13, 14, 48, 23, 648, DateTimeKind.Utc).AddTicks(4804))
+                        .HasDefaultValue(new DateTime(2022, 3, 15, 21, 32, 35, 531, DateTimeKind.Utc).AddTicks(2176))
                         .HasColumnName("CreateDate");
 
                     b.Property<DateTime>("LastUpdateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("SMALLDATETIME")
-                        .HasDefaultValue(new DateTime(2022, 3, 13, 14, 48, 23, 648, DateTimeKind.Utc).AddTicks(5014))
+                        .HasDefaultValue(new DateTime(2022, 3, 15, 21, 32, 35, 531, DateTimeKind.Utc).AddTicks(2349))
                         .HasColumnName("LastUpdateDate");
 
                     b.Property<string>("Slug")
@@ -121,15 +121,22 @@ namespace Blog.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("VARCHAR(80)")
+                        .HasColumnName("Name");
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("VARCHAR(80)")
+                        .HasColumnName("Slug");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.HasIndex(new[] { "Slug" }, "IX_Role_Slug")
+                        .IsUnique();
+
+                    b.ToTable("Role", (string)null);
                 });
 
             modelBuilder.Entity("Blog.Models.Tag", b =>
@@ -142,15 +149,22 @@ namespace Blog.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("NVARCHAR(80)")
+                        .HasColumnName("Name");
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("VARCHAR(80)")
+                        .HasColumnName("Slug");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.HasIndex(new[] { "Slug" }, "IX_Tag_Slug")
+                        .IsUnique();
+
+                    b.ToTable("Tag", (string)null);
                 });
 
             modelBuilder.Entity("Blog.Models.User", b =>

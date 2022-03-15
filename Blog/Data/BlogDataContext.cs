@@ -21,6 +21,8 @@ namespace Blog.Data
             modelBuilder.ApplyConfiguration(new CategoryMap());
             modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new PostMap());
+            modelBuilder.ApplyConfiguration(new RoleMap());
+            modelBuilder.ApplyConfiguration(new TagMap());
         }
     }
 }

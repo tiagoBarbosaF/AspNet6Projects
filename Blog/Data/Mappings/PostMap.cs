@@ -35,7 +35,7 @@ namespace Blog.Data.Mappings
             builder.Property(x => x.Body)
                 .IsRequired()
                 .HasColumnName("Body")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(MAX)");
 
             builder.Property(x => x.Slug)
                 .IsRequired()

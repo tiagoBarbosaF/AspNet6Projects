@@ -24,31 +24,31 @@ namespace Blog.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Roles",
+                name: "Role",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Slug = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
+                    Slug = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Roles", x => x.Id);
+                    table.PrimaryKey("PK_Role", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tags",
+                name: "Tag",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Slug = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "NVARCHAR(80)", maxLength: 80, nullable: false),
+                    Slug = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tags", x => x.Id);
+                    table.PrimaryKey("PK_Tag", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -78,10 +78,10 @@ namespace Blog.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "VARCHAR(160)", maxLength: 160, nullable: false),
                     Summary = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
-                    Body = table.Column<string>(type: "NVARCHAR", nullable: false),
+                    Body = table.Column<string>(type: "NVARCHAR(MAX)", nullable: false),
                     Slug = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValue: new DateTime(2022, 3, 13, 14, 48, 23, 648, DateTimeKind.Utc).AddTicks(4804)),
-                    LastUpdateDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValue: new DateTime(2022, 3, 13, 14, 48, 23, 648, DateTimeKind.Utc).AddTicks(5014)),
+                    CreateDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValue: new DateTime(2022, 3, 15, 21, 32, 35, 531, DateTimeKind.Utc).AddTicks(2176)),
+                    LastUpdateDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValue: new DateTime(2022, 3, 15, 21, 32, 35, 531, DateTimeKind.Utc).AddTicks(2349)),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     AuthorId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -115,7 +115,7 @@ namespace Blog.Migrations
                     table.ForeignKey(
                         name: "FK_UserRole_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "Roles",
+                        principalTable: "Role",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -139,7 +139,7 @@ namespace Blog.Migrations
                     table.ForeignKey(
                         name: "FK_PostTag_PostId",
                         column: x => x.PostId,
-                        principalTable: "Tags",
+                        principalTable: "Tag",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -178,6 +178,18 @@ namespace Blog.Migrations
                 column: "TagId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Role_Slug",
+                table: "Role",
+                column: "Slug",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tag_Slug",
+                table: "Tag",
+                column: "Slug",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_User_Slug",
                 table: "User",
                 column: "Slug",
@@ -198,13 +210,13 @@ namespace Blog.Migrations
                 name: "UserRole");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "Tag");
 
             migrationBuilder.DropTable(
                 name: "Post");
 
             migrationBuilder.DropTable(
-                name: "Roles");
+                name: "Role");
 
             migrationBuilder.DropTable(
                 name: "User");
