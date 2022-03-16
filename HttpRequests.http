@@ -12,6 +12,15 @@ Content-Type: application/json
 
 > {% client.global.set("auth_token", response.body.json.token); %}
 
+### POST account
+POST https://localhost:7209/v1/accounts
+Content-Type: application/json
+
+{
+  "name": "Tiago Barbosa",
+  "email": "tiagobarbosa@gmail.com"
+}
+
 ### GET user
 GET https://localhost:7209/v1/user
 Authorization: Bearer {{auth_token}}

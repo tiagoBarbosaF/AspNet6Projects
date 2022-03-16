@@ -58,12 +58,11 @@ namespace Blog.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "NVARCHAR(80)", maxLength: 80, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Bio = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Slug = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
-                    GitHub = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Email = table.Column<string>(type: "VARCHAR(160)", maxLength: 160, nullable: false),
+                    PasswordHash = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
+                    Bio = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Slug = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,8 +79,8 @@ namespace Blog.Migrations
                     Summary = table.Column<string>(type: "VARCHAR(255)", maxLength: 255, nullable: false),
                     Body = table.Column<string>(type: "NVARCHAR(MAX)", nullable: false),
                     Slug = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValue: new DateTime(2022, 3, 15, 21, 32, 35, 531, DateTimeKind.Utc).AddTicks(2176)),
-                    LastUpdateDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValue: new DateTime(2022, 3, 15, 21, 32, 35, 531, DateTimeKind.Utc).AddTicks(2349)),
+                    CreateDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValue: new DateTime(2022, 3, 16, 21, 40, 21, 65, DateTimeKind.Utc).AddTicks(8376)),
+                    LastUpdateDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValue: new DateTime(2022, 3, 16, 21, 40, 21, 65, DateTimeKind.Utc).AddTicks(8560)),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     AuthorId = table.Column<int>(type: "int", nullable: false)
                 },
