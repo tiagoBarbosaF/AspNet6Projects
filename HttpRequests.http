@@ -17,8 +17,8 @@ POST https://localhost:7209/v1/accounts
 Content-Type: application/json
 
 {
-  "name": "Tiago Barbosa",
-  "email": "tiagobarbosa@gmail.com"
+  "name": "Peter Mendonça",
+  "email": "tiagobf00@gmail.com"
 }
 
 ### GET user
