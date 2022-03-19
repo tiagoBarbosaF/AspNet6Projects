@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Blog.Models
 {
     public class User
@@ -11,6 +13,8 @@ namespace Blog.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        
+        [JsonIgnore]
         public string PasswordHash { get; set; }
         public string Bio { get; set; }
         public string Image { get; set; }

@@ -1,8 +1,11 @@
+using System.IO.Compression;
 using System.Text;
+using System.Text.Json.Serialization;
 using Blog;
 using Blog.Data;
 using Blog.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,8 +19,9 @@ LoadConfiguration(app);
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseStaticFiles();
+app.UseResponseCompression();
 app.MapControllers();
+app.UseStaticFiles();
 app.Run();
 
 void LoadConfiguration(WebApplication webApplication)
@@ -52,8 +56,22 @@ void ConfigureAuthentication(WebApplicationBuilder webApplicationBuilder)
 
 void ConfigureMvc(WebApplicationBuilder builder1)
 {
+    builder1.Services.AddMemoryCache();
+    builder1.Services.AddResponseCompression(options =>
+    {
+        options.Providers.Add<GzipCompressionProvider>();
+    });
+    builder1.Services.Configure<GzipCompressionProviderOptions>(options =>
+    {
+        options.Level = CompressionLevel.Optimal;
+    });
     builder1.Services.AddControllers()
-        .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
+        .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true)
+        .AddJsonOptions(x =>
+        {
+            x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
+        });
 }
 
 void ConfigureServices(WebApplicationBuilder webApplicationBuilder1)
