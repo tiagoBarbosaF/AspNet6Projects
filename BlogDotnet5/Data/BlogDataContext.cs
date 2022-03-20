@@ -1,16 +1,11 @@
-using Blog.Data.Mappings;
-using Blog.Models;
+using BlogDotnet5.Data.Mappings;
+using BlogDotnet5.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Blog.Data
+namespace BlogDotnet5.Data
 {
     public class BlogDataContext : DbContext
     {
-        public BlogDataContext(DbContextOptions<BlogDataContext> options) : base(options)
-        {
-            
-        }
-        
         public DbSet<Category> Categories { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Role> Roles { get; set; }

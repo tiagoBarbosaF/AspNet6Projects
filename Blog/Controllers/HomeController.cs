@@ -1,4 +1,3 @@
-using Blog.Attributes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers;
@@ -9,10 +8,11 @@ public class HomeController : ControllerBase
 {
     [HttpGet("")]
     // [ApiKey]  -> Test using apikey
-    public IActionResult Get()
+    public IActionResult Get([FromServices] IConfiguration configuration)
     {
         return Ok(new
         {
+            environment = configuration.GetValue<string>("Env"),
             status = "API online"
         });
     }
